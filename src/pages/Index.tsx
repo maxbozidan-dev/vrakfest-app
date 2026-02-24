@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback, useTransition } from 'react';
-import { BarChart3, Activity, ShoppingCart, User, BookOpen, Calendar, MessageSquare } from 'lucide-react';
+import { BarChart3, Activity, ShoppingCart, User, BookOpen, Calendar, MessageSquare, Timer, Wifi, Zap } from 'lucide-react';
 import { SidebarProvider } from '@/components/ui/sidebar';
 import { AppSidebar } from '@/components/AppSidebar';
 import { DashboardHeader } from '@/components/DashboardHeader';
@@ -158,6 +158,55 @@ const Index = () => {
       case 'jezdci':
         return (
           <div className="space-y-6 md:space-y-10">
+            {/* Mobile HUD - game style */}
+            <div className="md:hidden space-y-3">
+              <div className="bg-[#111] border border-racing-yellow/40 p-3 relative overflow-hidden">
+                <div className="absolute inset-0 bg-[linear-gradient(rgba(244,206,20,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(244,206,20,0.06)_1px,transparent_1px)] bg-[size:18px_18px] opacity-40" />
+                <div className="relative z-10 flex items-center justify-between gap-2">
+                  <div>
+                    <p className="font-tech text-[10px] tracking-[0.18em] uppercase text-racing-yellow">Mobilní panel jezdce</p>
+                    <p className="font-bebas text-3xl leading-none tracking-wider text-white">RACE HUD</p>
+                  </div>
+                  <div className="flex items-center gap-1 px-2 py-1 border border-racing-yellow/40 bg-racing-yellow/10">
+                    <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                    <span className="font-tech text-[9px] uppercase tracking-widest text-racing-yellow">ONLINE</span>
+                  </div>
+                </div>
+                <div className="relative z-10 mt-3 grid grid-cols-3 gap-2">
+                  <div className="bg-black/50 border border-white/10 p-2">
+                    <div className="flex items-center gap-1 text-white/50"><User className="w-3 h-3" /><span className="text-[9px] font-tech uppercase">Aktivní</span></div>
+                    <p className="font-bebas text-2xl text-white leading-none mt-1">{activeRacers.length}</p>
+                  </div>
+                  <div className="bg-black/50 border border-white/10 p-2">
+                    <div className="flex items-center gap-1 text-white/50"><Timer className="w-3 h-3" /><span className="text-[9px] font-tech uppercase">Kolo</span></div>
+                    <p className="font-bebas text-2xl text-racing-yellow leading-none mt-1">{tournament?.currentRound || 0}</p>
+                  </div>
+                  <div className="bg-black/50 border border-white/10 p-2">
+                    <div className="flex items-center gap-1 text-white/50"><Wifi className="w-3 h-3" /><span className="text-[9px] font-tech uppercase">Systém</span></div>
+                    <p className="font-bebas text-2xl text-white leading-none mt-1">OK</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-2">
+                {[
+                  { id: 'turnaj', label: 'Program', icon: Calendar },
+                  { id: 'bodove-poradei', label: 'Body', icon: BarChart3 },
+                  { id: 'hlasovani', label: 'Hlasování', icon: Zap },
+                  { id: 'bazar', label: 'Bazar', icon: ShoppingCart },
+                ].map((quick) => (
+                  <button
+                    key={quick.id}
+                    onClick={() => handleTabChange(quick.id)}
+                    className="bg-[#111] border border-white/10 active:border-racing-yellow/60 p-3 text-left"
+                  >
+                    <div className="flex items-center gap-2 text-racing-yellow"><quick.icon className="w-4 h-4" /><span className="font-tech text-[10px] uppercase tracking-widest">Quick</span></div>
+                    <p className="font-bebas text-2xl text-white leading-none mt-1 tracking-wide">{quick.label}</p>
+                  </button>
+                ))}
+              </div>
+            </div>
+
             <BannerSlideshow />
 
             <DashboardStats
@@ -169,20 +218,20 @@ const Index = () => {
             <EventCountdown />
 
             {/* Driver Focused Grid Section */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6">
               {GRID_BOXES.map((box) => (
                 <div
                   key={box.id}
-                  className="bg-[#111] border border-white/5 p-6 cursor-pointer group hover:border-racing-yellow/30 transition-all relative overflow-hidden"
+                  className="bg-[#111] border border-white/5 p-4 md:p-6 cursor-pointer group hover:border-racing-yellow/30 transition-all relative overflow-hidden"
                   onClick={() => handleTabChange(box.id)}
                 >
-                  <div className="flex items-start gap-5 relative z-10">
-                    <div className="w-14 h-14 bg-[#222] flex items-center justify-center border border-white/10 group-hover:border-racing-yellow/30 transition-colors flex-shrink-0">
-                      <box.icon className="w-7 h-7 text-racing-yellow" />
+                  <div className="flex items-start gap-4 md:gap-5 relative z-10">
+                    <div className="w-12 h-12 md:w-14 md:h-14 bg-[#222] flex items-center justify-center border border-white/10 group-hover:border-racing-yellow/30 transition-colors flex-shrink-0">
+                      <box.icon className="w-6 h-6 md:w-7 md:h-7 text-racing-yellow" />
                     </div>
                     <div>
-                      <h3 className="font-bebas text-3xl text-white mb-1 tracking-wider">{box.title}</h3>
-                      <p className="text-white/40 text-sm font-tech leading-relaxed">{box.desc}</p>
+                      <h3 className="font-bebas text-2xl md:text-3xl text-white mb-1 tracking-wider">{box.title}</h3>
+                      <p className="text-white/40 text-xs md:text-sm font-tech leading-relaxed">{box.desc}</p>
                     </div>
                   </div>
                   {/* Subtle Background Glow */}

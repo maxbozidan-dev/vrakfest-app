@@ -37,7 +37,7 @@ export const BannerSlideshow = memo(() => {
     const prevSlide = () => setCurrentIndex((prev) => (prev - 1 + bannerData.length) % bannerData.length);
 
     return (
-        <div className="relative w-full h-[300px] md:h-[400px] overflow-hidden border border-white/10 group">
+        <div className="relative w-full h-[220px] md:h-[400px] overflow-hidden border border-white/10 group">
             {/* Slides */}
             {bannerData.map((banner, index) => (
                 <div
@@ -55,14 +55,14 @@ export const BannerSlideshow = memo(() => {
                     </div>
 
                     {/* Content */}
-                    <div className="relative h-full flex flex-col justify-center px-8 md:px-16 max-w-2xl z-20">
+                    <div className="relative h-full flex flex-col justify-center px-4 md:px-16 max-w-2xl z-20">
                         <span className="inline-block px-3 py-1 bg-racing-yellow text-black font-tech text-[10px] tracking-widest mb-4 w-fit">
                             {banner.tag}
                         </span>
-                        <h2 className="font-bebas text-5xl md:text-7xl text-white mb-4 tracking-wider leading-none">
+                        <h2 className="font-bebas text-3xl md:text-7xl text-white mb-2 md:mb-4 tracking-wider leading-none">
                             {banner.title}
                         </h2>
-                        <p className="text-white/60 font-tech text-sm md:text-base leading-relaxed max-w-lg mb-6">
+                        <p className="text-white/70 font-tech text-xs md:text-base leading-relaxed max-w-lg mb-3 md:mb-6">
                             {banner.description}
                         </p>
                     </div>
@@ -72,13 +72,13 @@ export const BannerSlideshow = memo(() => {
             {/* Navigation Controls */}
             <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 bg-black/40 border border-white/10 text-white hover:bg-racing-yellow hover:text-black transition-all opacity-0 group-hover:opacity-100"
+                className="hidden md:block absolute left-4 top-1/2 -translate-y-1/2 z-30 p-2 bg-black/40 border border-white/10 text-white hover:bg-racing-yellow hover:text-black transition-all opacity-0 group-hover:opacity-100"
             >
                 <ChevronLeft className="w-6 h-6" />
             </button>
             <button
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 bg-black/40 border border-white/10 text-white hover:bg-racing-yellow hover:text-black transition-all opacity-0 group-hover:opacity-100"
+                className="hidden md:block absolute right-4 top-1/2 -translate-y-1/2 z-30 p-2 bg-black/40 border border-white/10 text-white hover:bg-racing-yellow hover:text-black transition-all opacity-0 group-hover:opacity-100"
             >
                 <ChevronRight className="w-6 h-6" />
             </button>

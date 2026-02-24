@@ -21,13 +21,13 @@ function StatCard({
     if (typeof value === 'string' && value.includes('/')) {
       const [current, max] = value.split('/');
       return (
-        <span className="text-3xl md:text-4xl font-bebas tracking-wide block">
+        <span className="text-2xl md:text-4xl font-bebas tracking-wide block">
           <span className="text-racing-yellow">{current}</span>
           <span className="text-white/30 text-2xl">/{max}</span>
         </span>
       );
     }
-    return <span className="text-3xl md:text-4xl font-bebas tracking-wide text-white block">{value}</span>;
+    return <span className="text-2xl md:text-4xl font-bebas tracking-wide text-white block">{value}</span>;
   };
 
   return (
@@ -59,7 +59,7 @@ export function DashboardStats({
 }: DashboardStatsProps) {
   return (
     <div className="space-y-4 md:space-y-6">
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-4">
         <StatCard title="Ukončené VrakFesty" value={3} subtitle="MOJE ÚČAST CELKEM" icon={Trophy} color="bg-racing-yellow text-black" />
         <StatCard title="Body v sezóně" value={145} subtitle="AKTUÁLNÍ ROČNÍK 2025" icon={Award} color="bg-white text-black" />
         <StatCard title="Nejlepší výsledek" value="2. MÍSTO" subtitle="VRAKFEST OSTRAVA 2024" icon={Flag} color="bg-racing-yellow text-black" />
