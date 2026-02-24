@@ -35,9 +35,11 @@ export const DashboardHeader = memo(({
           <img
             src={assetUrl('/media/logos/vrakfest-mobile-header.jpg')}
             alt="Vrakfest"
-            className="h-8 w-auto object-contain"
+            className="h-10 w-auto object-contain"
           />
         </div>
+
+        <div className="md:hidden h-9 w-9" />
 
         {/* Dynamic Ticker HUD Element */}
         <div className="flex-1 hidden md:flex items-center">
