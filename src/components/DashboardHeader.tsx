@@ -1,8 +1,5 @@
 import React, { memo } from 'react';
-import { Bell, User, Settings } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
+import { Bell, User } from 'lucide-react';
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { assetUrl } from '@/lib/assetUrl';
 
@@ -24,7 +21,7 @@ export const DashboardHeader = memo(({
   onRoleChange
 }: DashboardHeaderProps) => {
   return (
-    <header className="h-16 md:h-20 flex items-center justify-between px-3 md:px-6 z-50 relative pointer-events-auto">
+    <header className="h-[72px] md:h-20 flex items-center justify-between px-3 md:px-6 z-50 relative pointer-events-auto">
       {/* HUD Top Bar Background */}
       <div className="absolute top-0 left-0 right-0 h-full bg-gradient-to-b from-black/80 to-transparent pointer-events-none"></div>
 
@@ -35,11 +32,18 @@ export const DashboardHeader = memo(({
           <img
             src={assetUrl('/media/logos/vrakfest-mobile-header.jpg')}
             alt="Vrakfest"
-            className="h-10 w-auto object-contain"
+            className="h-12 w-auto object-contain"
           />
         </div>
 
-        <div className="md:hidden h-9 w-9" />
+        <button
+          type="button"
+          aria-label="Notifikace"
+          className="md:hidden relative h-9 w-9 border border-racing-yellow/40 bg-black/60 text-racing-yellow hover:bg-racing-yellow hover:text-black transition-colors flex items-center justify-center"
+        >
+          <Bell className="h-4 w-4" />
+          <span className="absolute top-1.5 right-1.5 w-1.5 h-1.5 rounded-full bg-racing-yellow" />
+        </button>
 
         {/* Dynamic Ticker HUD Element */}
         <div className="flex-1 hidden md:flex items-center">
