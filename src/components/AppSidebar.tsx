@@ -16,6 +16,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from '@/components/ui/sidebar';
+import { assetUrl } from '@/lib/assetUrl';
 
 interface AppSidebarProps {
   activeTab: string;
@@ -70,7 +71,7 @@ export const AppSidebar = memo(({ activeTab, onTabChange }: AppSidebarProps) => 
 
         {/* Header - Compact */}
         <div className="px-4 py-8 border-b border-white/5 flex justify-center">
-          <img src="/LOGO-short-Y.png" alt="Vrakfest Logo" className="w-[160px] h-auto" />
+          <img src={assetUrl('/LOGO-short-Y.png')} alt="Vrakfest Logo" className="w-[160px] h-auto" />
         </div>
 
         {/* Navigation - Filling available space */}

@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Trophy, ThumbsUp, Medal, Flame } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { assetUrl } from '@/lib/assetUrl';
 
 interface PollOption {
     id: string;
@@ -122,7 +123,7 @@ export function Voting() {
                                         >
                                             <div className="relative h-48 overflow-hidden">
                                                 <img
-                                                    src={option.image}
+                                                    src={assetUrl(option.image)}
                                                     alt={option.name}
                                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                                 />

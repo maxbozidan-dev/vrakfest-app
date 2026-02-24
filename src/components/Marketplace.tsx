@@ -11,6 +11,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Plus, Car, Wrench, Edit, Trash2, Search, Image, Settings } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { addActionLog } from './ActionLog';
+import { assetUrl } from '@/lib/assetUrl';
 
 interface MarketplaceItem {
   id: string;
@@ -39,7 +40,7 @@ function MarketplaceCard({ item, onEdit, onDelete }: MarketplaceItemCardProps) {
       <div className="relative h-56 overflow-hidden">
         {item.images.length > 0 ? (
           <img
-            src={item.images[0]}
+            src={assetUrl(item.images[0])}
             alt={item.title}
             className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
           />

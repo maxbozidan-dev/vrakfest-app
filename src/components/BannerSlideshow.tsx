@@ -1,5 +1,6 @@
 import React, { useState, useEffect, memo } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { assetUrl } from '@/lib/assetUrl';
 
 const bannerData = [
     {
@@ -47,7 +48,7 @@ export const BannerSlideshow = memo(() => {
                     {/* Image with Overlay */}
                     <div
                         className="absolute inset-0 bg-cover bg-center transition-transform duration-[6000ms] ease-linear scale-100 hover:scale-110"
-                        style={{ backgroundImage: `url(${banner.image})` }}
+                        style={{ backgroundImage: `url(${assetUrl(banner.image)})` }}
                     >
                         <div className="absolute inset-0 bg-gradient-to-r from-black via-black/60 to-transparent"></div>
                         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>

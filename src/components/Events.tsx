@@ -8,6 +8,7 @@ import { useEvents } from '@/hooks/useEvents';
 import { useRacingTournament } from '@/hooks/useRacingTournament';
 import { Event, EventType, EVENT_TYPES, EventParticipant } from '@/types/events';
 import { Racer } from '@/types/racing';
+import { assetUrl } from '@/lib/assetUrl';
 
 export function Events() {
   const { getUpcomingEvents, getPastEvents } = useEvents();
@@ -62,7 +63,7 @@ export function Events() {
       {/* Background Image with Zoom effect */}
       <div className="absolute inset-0 z-0">
         <img
-          src={event.imageUrl || '/placeholder-event.png'}
+          src={assetUrl(event.imageUrl || '/placeholder.svg')}
           alt={event.name}
           className="w-full h-full object-cover opacity-40 group-hover:scale-110 group-hover:opacity-60 transition-all duration-700"
         />
@@ -122,7 +123,7 @@ export function Events() {
     <div className="space-y-10 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="relative h-[400px] md:h-[500px] w-full overflow-hidden border border-white/10">
         <img
-          src={event.imageUrl || '/placeholder-event.png'}
+          src={assetUrl(event.imageUrl || '/placeholder.svg')}
           alt={event.name}
           className="w-full h-full object-cover"
         />
