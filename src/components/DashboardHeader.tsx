@@ -7,6 +7,7 @@ interface DashboardHeaderProps {
   racerCount: number;
   activeRacerCount: number;
   onReset: () => void;
+  onLogoClick?: () => void;
   currentInfo?: string; // Pro zobrazení aktuálních informací
   userRole?: 'admin' | 'user';
   onRoleChange?: (role: 'admin' | 'user') => void;
@@ -16,6 +17,7 @@ export const DashboardHeader = memo(({
   racerCount,
   activeRacerCount,
   onReset,
+  onLogoClick,
   currentInfo = "Vítejte v závodní aplikaci",
   userRole = 'admin',
   onRoleChange
@@ -23,7 +25,7 @@ export const DashboardHeader = memo(({
   const { toggleSidebar } = useSidebar();
 
   return (
-    <header className="h-[72px] md:h-20 pt-1 flex items-center justify-between px-3 md:px-6 z-50 relative pointer-events-auto">
+    <header className="h-[72px] md:h-20 pt-2 flex items-center justify-between px-3 md:px-6 z-50 relative pointer-events-auto">
       {/* HUD Top Bar Background */}
       <div className="absolute top-0 left-0 right-0 h-full bg-gradient-to-b from-black/80 to-transparent pointer-events-none"></div>
 
@@ -37,13 +39,18 @@ export const DashboardHeader = memo(({
           <Menu className="h-6 w-6" />
         </button>
 
-        <div className="md:hidden flex-1 flex justify-center">
+        <button
+          type="button"
+          onClick={onLogoClick}
+          className="md:hidden flex-1 flex justify-center"
+          aria-label="Zpět na nástěnku"
+        >
           <img
             src={assetUrl('/media/logos/vrakfest-mobile-header.jpg')}
             alt="Vrakfest"
             className="h-12 w-auto object-contain"
           />
-        </div>
+        </button>
 
         <button
           type="button"

@@ -342,6 +342,7 @@ const Index = () => {
             activeRacerCount={activeRacers.length}
             racerCount={racers.length}
             onReset={resetTournament}
+            onLogoClick={() => handleTabChange('jezdci')}
             currentInfo={tournament.isActive ? "PŘÍŠTÍ ZÁVOD ZA 15 MIN" : "PŘIPRAVUJEME DALŠÍ AKCI"}
           />
 
